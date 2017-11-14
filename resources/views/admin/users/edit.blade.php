@@ -53,9 +53,25 @@
                     {!! Form::submit('Actualizeza', ['class'=>'btn btn-primary'])!!}
                 </div>
 
+
+
             </div>
+            {!!Form::close()!!}
+        @if(Auth::user()->id != $user->id)
+            <div>
+                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy',$user->id]]) !!}
+
+                <div>
+                <div class="form-group">
+                {!! Form::submit('Sterge', ['class'=>'btn btn-danger'])!!}
+                </div>
+                </div>
+
+                {!! Form::close() !!}
 
 
+            </div>
+        @endif
         </div>
 
 
@@ -66,6 +82,5 @@
 
 
 
-    {!!Form::close()!!}
 @include('layouts.inc.messages')
     @endsection

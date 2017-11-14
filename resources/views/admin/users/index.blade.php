@@ -3,6 +3,8 @@
 
 @section('content')
 <h1>Users index</h1>
+
+
 @if (count($users)>0)
 <table class="table table-stripped">
     <thead>
@@ -23,7 +25,7 @@
           <td><img src="/images/{{$user->photo ? $user->photo->file : 'No photo'}}" height="100px" width="100"</td>
         <td>{{$user->name}}</td>
         <td>{{$user->email}}</td>
-        <td>{{$user->role->name}}</td>
+        <td>{{$user->role ? $user->role->name : 'Nu are rol'}}</td>
           <td>{{$user->is_active ==1 ? 'Activ' : 'Inactiv'}}</td>
           <td>{{$user->created_at->diffForHumans()}}</td>
           <td>{{$user->updated_at->diffForHumans()}}</td>
