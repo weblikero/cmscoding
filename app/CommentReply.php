@@ -11,7 +11,7 @@ class CommentReply extends Model
 
     public function comment(){
 
-        return $this->belongsTo('')
+        return $this->belongsTo('App\Comment');
 
     }
 }

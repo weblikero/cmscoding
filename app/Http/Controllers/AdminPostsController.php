@@ -71,7 +71,11 @@ class AdminPostsController extends Controller
      */
     public function show($id)
     {
-        //
+
+//        $post = Post::findOrFail($id);
+//
+//
+//        return view('home.post', compact('post'));
     }
 
     /**
@@ -146,8 +150,9 @@ class AdminPostsController extends Controller
 
     public function post($id){
         $post = Post::findOrFail($id);
+        $comments = $post->comments()->whereIsActive(1)->get();
 
-        return view('post', compact('post'));
+         return view('post', compact('post','comments','replies'));
 
     }
 }
