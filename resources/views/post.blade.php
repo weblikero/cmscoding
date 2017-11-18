@@ -59,6 +59,8 @@
         <!-- Comment -->
         @if(count($comments)>0)
             @foreach($comments as $comment)
+
+
         <div class="media">
             <a class="pull-left" href="#">
                 <img height="50px" width="50px" class="media-object" src="/images/{{$comment->photo}}" alt="">
@@ -85,9 +87,11 @@
                 <!-- Nested Comment -->
                 @if(count($comment->replies)>0)
 
+
+
                     @foreach($comment->replies as $reply)
                 <div style="padding-left:25px" class="media">
-
+                    @if($reply->is_active == 1)
                     <div class="media-body">
                         <h4 class="media-heading">{{$reply->author}}
                             <small>{{$reply->created_at}}</small>
@@ -95,6 +99,7 @@
                         {{$reply->body}}
                     </div>
                 </div>
+                        @endif
                     @endforeach
 
                     @else

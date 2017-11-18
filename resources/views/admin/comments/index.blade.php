@@ -5,6 +5,17 @@
 @section('content')
     <h1>Comments</h1>
 
+    <div>
+        @if(Session::has('deleted_comment'))
+
+            <p>{{session('deleted_comment')}}</p>
+
+            @endif
+
+
+    </div>
+
+
     @if(count($comments)>0)
 
         <table class="table table-stripped">
@@ -27,6 +38,11 @@
                   <td>{{$comment->email}}</td>
                   <td>{{$comment->body}}</td>
                   <td>{{$comment->is_active == 0 ? 'Inactiv' : 'Activ'}}</td>
+                  <td>@if($comment->is_active ==1)
+                          <a href="{{route('replies.show',$comment->id)}}">View Replies</a>
+
+                      @endif
+                  </td>
                   <td>
 
                       @if($comment->is_active ==1)
@@ -46,6 +62,16 @@
 
 
                   @endif
+                  </td>
+                  <td>
+                      {!! Form::open(['method'=>'DELETE', 'action'=>['PostCommentsController@destroy',$comment->id]]) !!}
+
+                      <div class="form-group">
+                      {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                      </div>
+
+                      {!! Form::close() !!}
+
                   </td>
               </tr>
             @endforeach
